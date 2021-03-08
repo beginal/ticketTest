@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import { FiSearch } from 'react-icons/fi';
 interface Props {
-	search: any;
+	search: (arr1: string) => void;
 }
 
 const Search = ({ search }: Props) => {
-	const [searchValue, setSearchValue] = useState('');
+	const [searchValue, setSearchValue] = useState<string>('');
 
-	const handleSearchInputChanges = (e: any) => {
+	const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(e.target.value);
 	};
 
@@ -16,15 +16,24 @@ const Search = ({ search }: Props) => {
 		setSearchValue('');
 	};
 
-	const callSearchFunction = (e: any) => {
+	const callSearchFunction = (e: React.FormEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 		search(searchValue);
 		resetInputField();
 	};
 	return (
 		<Container>
-			<input type="text" value={searchValue} onChange={handleSearchInputChanges} />
-			<input onClick={callSearchFunction} type="submit" value="SEARCH" />
+			<div>
+				<input
+					type="text"
+					value={searchValue}
+					placeholder="Search IMDb"
+					onChange={handleSearchInputChanges}
+				/>
+				<button onClick={callSearchFunction} type="submit">
+					<FiSearch />
+				</button>
+			</div>
 		</Container>
 	);
 };
@@ -36,22 +45,30 @@ const Container = styled.form`
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin-top: 10px;
-	input[type='text'] {
-		width: 40%;
-		min-width: 170px;
-	}
-	input[type='submit'] {
-		padding: 5px;
-		background-color: transparent;
-		color: black;
-		border: 1px solid black;
-		width: 80px;
-		margin-left: 5px;
-		cursor: pointer;
-		&:hover {
-			background-color: #282c34;
-			color: antiquewhite;
+	div {
+		display: flex;
+		background-color: white;
+		border: 2px solid white;
+		border-radius: 5px;
+		input {
+			min-width: 350px;
+			outline: none;
+			border: none;
+			padding: 8px 10px;
+			border-radius: 5px;
+			font-size: 0.88rem;
+			font-weight: 500;
+			flex: 1;
+		}
+		button {
+			display: flex;
+			align-items: center;
+			font-size: 1.3rem;
+			outline: none;
+			border: none;
+			background-color: transparent;
+			color: black;
+			cursor: pointer;
 		}
 	}
 `;

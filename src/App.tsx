@@ -1,46 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { RootState } from 'redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	searchMovieSuccess,
+	searchMovieRequest,
+	searchMovieFailure,
+} from 'redux/reducer/movieReducer';
 import { OMDB_API_KEY, OMDB_API_URL } from 'utils';
 import styled from 'styled-components';
 import Header from 'components/Header';
 import Movie from 'components/Movie';
-import Search from 'components/Search';
 
 const App = () => {
-	const [loading, setLoading] = useState(true);
-	const [movies, setMovies] = useState([]);
-	const [errorMessage, setErrorMessage] = useState(null);
+	const dispatch = useDispatch();
+	const { loading, movies, errorMessage } = useSelector((state: RootState) => state.movieReducer);
 
 	useEffect(() => {
 		fetch(`${OMDB_API_URL}man${OMDB_API_KEY}`)
 			.then((res) => res.json())
 			.then((data) => {
-				setMovies(data.Search);
-				setLoading(false);
+				dispatch(searchMovieSuccess(data.Search));
 			});
 	}, []);
 
-	const search = (searchValue: any) => {
-		setLoading(true);
-		setErrorMessage(null);
+	const search = (searchValue: string) => {
+		dispatch(searchMovieRequest());
 
 		fetch(`${OMDB_API_URL}${searchValue}${OMDB_API_KEY}`)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.Response === 'True') {
-					setMovies(data.Search);
-					setLoading(false);
+					dispatch(searchMovieSuccess(data.Search));
 				} else {
-					setErrorMessage(data.Error);
-					setLoading(false);
+					dispatch(searchMovieFailure(data.Error));
 				}
 			});
 	};
 
 	return (
 		<Container>
-			<Header text="HOOKED" />
-			<Search search={search} />
-			<p>Sharing a few of our favorite movies</p>
+			<Header search={search} text="HAM JUN HO" />
 			<div>
 				{loading && !errorMessage ? (
 					<span>loading...</span>
@@ -57,14 +56,15 @@ const App = () => {
 export default App;
 
 const Container = styled.div`
+	background: black;
 	text-align: center;
-	p {
-		font-size: large;
-	}
+	min-height: 100vh;
 	> div {
 		display: flex;
 		flex-wrap: wrap;
+		padding: 75px 0;
 		flex-direction: row;
+		justify-content: center;
 		.errorMessage {
 			margin: auto;
 			font-weight: bold;

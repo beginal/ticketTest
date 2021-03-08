@@ -49,7 +49,7 @@ utils.ts 에서는 여러 API 주소들을 적어 export했습니다.
 
 react-helmet을 사용해 favicon과 title을 변경했습니다.
 
-![image-20210308215231248](C:\Users\begin\AppData\Roaming\Typora\typora-user-images\image-20210308215231248.png)
+![image-20210308215231248](https://user-images.githubusercontent.com/44854708/110326191-aa271780-805b-11eb-9a9c-629454590d37.png)
 
 
 

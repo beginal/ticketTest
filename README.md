@@ -1,3 +1,7 @@
+![_138](https://user-images.githubusercontent.com/44854708/110325968-603e3180-805b-11eb-9a86-46b0e18895d8.png)
+
+
+
 #### 개발과정
 
 1. CRA typescirpt template를 사용해  기본세팅을 했습니다.
@@ -35,7 +39,7 @@ npx create-react-app -template typescript
 
    
 
-![image-20210308214609949](C:\Users\begin\AppData\Roaming\Typora\typora-user-images\image-20210308214609949.png)
+![_137](https://user-images.githubusercontent.com/44854708/110325975-63392200-805b-11eb-9281-98ff58c942f3.png)
 
 폴더 구성은 위와 같습니다.
 
@@ -78,4 +82,3 @@ https://beginal.github.io/ticketTest/
 #### 후기
 
 기능구현이나 스타일 작업에만 집중하다보니 중간중간 커밋을 너무 못한것 같습니다.
-

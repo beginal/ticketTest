@@ -34,13 +34,11 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-${{ runner.OS }}-
       - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-        env:
-          NODE_ENV: production
+        run: |
+          npm install
+          npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{secrets.ACCESS_TOKEN}}
-          publish_dir: ./public
+          publish_dir: ./build

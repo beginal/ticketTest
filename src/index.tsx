@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 ReactDOM.render(
 	<Provider store={store}>
 		<Helmet>
-			<title>영화 정보 APP - Ham Jun Ho</title>
+			<title>영화 정보 APP - Ham Jun Ho #</title>
 			<link href="/public/favicon.ico" rel="shortcut icon" />
 			<link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" />
 			<link

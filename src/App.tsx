@@ -45,8 +45,13 @@ const App = () => {
 					<span>loading...</span>
 				) : errorMessage ? (
 					<div className="errorMessage">{errorMessage}</div>
+				) : movies ? (
+					movies?.map((movie, i) => <Movie key={`${i} - ${movie}`} movie={movie} />)
 				) : (
-					movies.map((movie, i) => <Movie key={`${i} - ${movie}`} movie={movie} />)
+					<div className="noData">
+						<h2>찾으시는 영화 정보가 없습니다</h2>
+						<p>API Key가 잘못되었을 수 있습니다.</p>
+					</div>
 				)}
 			</div>
 		</Container>
@@ -61,6 +66,7 @@ const Container = styled.div`
 	min-height: 100vh;
 	> div {
 		display: flex;
+		height: fit-content;
 		flex-wrap: wrap;
 		padding: 75px 0;
 		flex-direction: row;
@@ -69,6 +75,21 @@ const Container = styled.div`
 			margin: auto;
 			font-weight: bold;
 			color: rgb(161, 15, 15);
+		}
+		.noData {
+			display: flex;
+			height: calc(100vh - 100px);
+			justify-content: center;
+			flex-direction: column;
+			min-height: fit-content;
+			color: white;
+			line-height: 1.3;
+			h2 {
+				font-size: 3rem;
+			}
+			p {
+				font-size: 0.8rem;
+			}
 		}
 	}
 `;
